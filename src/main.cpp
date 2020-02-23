@@ -26,8 +26,10 @@ int main(int argc, const char** argv) {
     
     VideoCapture camera; // Camera
     Mat img; // Image
-    int frames = 0; // Number of frames
     time_t start, end; // Start and end times
+    int frames = 0; // Number of frames
+    double seconds = 0; // Seconds elapsed
+    int fps = 0; // Frames per second
     
     // Problem 1.1
     cout << "Problem 1.1" << endl;
@@ -43,17 +45,21 @@ int main(int argc, const char** argv) {
         frames++;
 		camera >> img;
 		imshow("Camera", img);
+        
+        time(&end); // End Time
+        seconds = difftime (end, start); // Time elapsed
+        if (seconds >= 2) {
+            fps  = frames / seconds; // Frames per second
+            cout << "Frames  : " << frames << endl;
+            cout << "Seconds  : " << seconds << endl;
+            cout << "Frames per second : " << fps << endl << endl;
+            frames = 0;
+            time(&start); // New start time
+        }
+        
 		int key = waitKey(5);
 		if (key == 27 || key == 'q') break;
 	}
-    
-    time(&end); // End Time
-    double seconds = difftime (end, start); // Time elapsed
-    
-    int fps  = frames / seconds; // Frames per second
-    cout << "Frames  : " << frames << endl;
-    cout << "Seconds  : " << seconds << endl;
-    cout << "Frames per second : " << fps << endl;
     
 	camera.release();
     
