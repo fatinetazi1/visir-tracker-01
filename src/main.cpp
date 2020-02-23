@@ -116,8 +116,8 @@ void detectAndDisplay(Mat frame) {
     equalizeHist(frame_gray, frame_gray); // Applying histogram equalization
     
     // Face Detection
-    std::vector<Rect> faces;
-    face_cascade.detectMultiScale(frame_gray, faces);
+    std::vector<Rect> faces; // Vector of rectangles where faces were detected
+    face_cascade.detectMultiScale(frame_gray, faces); // Detects faces and stores them in faces vector
     
     for (size_t i = 0; i < faces.size(); i++) {
         Point face_center( faces[i].x + faces[i].width/2, faces[i].y + faces[i].height/2 );
@@ -125,10 +125,10 @@ void detectAndDisplay(Mat frame) {
         Mat faceROI = frame_gray(faces[i]);
         
         // Detect eyes in face
-        std::vector<Rect> eyes;
-        eyes_cascade.detectMultiScale(faceROI, eyes);
+        std::vector<Rect> eyes; // Vector of rectangles where eyes were detected
+        eyes_cascade.detectMultiScale(faceROI, eyes); // Detects eyes and stores them in eyes vector
         
-        for ( size_t j = 0; j < eyes.size(); j++ ) {
+        for (size_t j = 0; j < eyes.size(); j++) {
             Point eye_center( faces[i].x + eyes[j].x + eyes[j].width/2, faces[i].y + eyes[j].y + eyes[j].height/2 );
             int radius = cvRound( (eyes[j].width + eyes[j].height)*0.25 );
             circle( frame, eye_center, radius, Scalar( 255, 0, 0 ), 4 );
