@@ -59,7 +59,7 @@ int main(int argc, const char** argv) {
 
 	int key = waitKey(5);
 	if (key == 27 || key == 'q') break;
-	}
+    }
 
     camera.release();
     
