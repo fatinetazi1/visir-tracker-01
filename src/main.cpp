@@ -35,33 +35,33 @@ int main(int argc, const char** argv) {
     cout << "Problem 1.1" << endl;
     time(&start); // Start time
     
-	if (!camera.open(0)) {
-		printf("Can't find a camera\n");
-		return 1;
-	};
-	
-	// Loop 1
-	for(;;) {
-        frames++;
-		camera >> img;
-		imshow("Camera", img);
-        
-        time(&end); // End Time
-        seconds = difftime (end, start); // Time elapsed
-        if (seconds >= 2) {
-            fps  = frames / seconds; // Frames per second
-            cout << "Frames  : " << frames << endl;
-            cout << "Seconds  : " << seconds << endl;
-            cout << "Frames per second : " << fps << endl << endl;
-            frames = 0;
-            time(&start); // New start time
-        }
-        
-		int key = waitKey(5);
-		if (key == 27 || key == 'q') break;
+    if (!camera.open(0)) {
+	printf("Can't find a camera\n");
+	return 1;
+    };
+
+    // Loop 1
+    for(;;) {
+	frames++;
+	camera >> img;
+	imshow("Camera", img);
+
+	time(&end); // End Time
+	seconds = difftime (end, start); // Time elapsed
+	if (seconds >= 2) {
+	    fps  = frames / seconds; // Frames per second
+	    cout << "Frames  : " << frames << endl;
+	    cout << "Seconds  : " << seconds << endl;
+	    cout << "Frames per second : " << fps << endl << endl;
+	    frames = 0;
+	    time(&start); // New start time
 	}
-    
-	camera.release();
+
+	int key = waitKey(5);
+	if (key == 27 || key == 'q') break;
+	}
+
+    camera.release();
     
     // Problem 1.2
     cout << "Problem 1.2" << endl;
