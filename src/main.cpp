@@ -20,7 +20,7 @@ CascadeClassifier eyes_cascade;
 int main(int argc, const char** argv) {
     
     if( argc != 3 ) {
-        cout << "Usage: ./visir-tracker <path_to_haarcascade_frontalface_alt.xml>                                 <path_to_haarcascade_eye_tree_eyeglasses.xml>" << endl;
+        cout << "Usage: ./visir-tracker <path_to_haarcascade_frontalface_alt.xml> <path_to_haarcascade_eye_tree_eyeglasses.xml>" << endl;
         return 1;
     }
     
